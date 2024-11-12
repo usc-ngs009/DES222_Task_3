@@ -1,0 +1,1 @@
+emcc main.cpp -o output.js -s EXPORTED_FUNCTIONS='[_generateMessage]' -s MODULARIZE=1 -s EXPORT_ES6=1

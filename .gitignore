@@ -33,3 +33,7 @@
 
 # VS Code
 .vscode/*
+
+cmake-build-debug/*
+.idea/*
+CMakeLists.txt

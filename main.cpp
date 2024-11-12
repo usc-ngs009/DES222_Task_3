@@ -3,6 +3,7 @@
 #include <string>
 #include <algorithm>
 #include <fstream>
+#include <sstream>
 #include <list>
 using namespace std;
 
@@ -45,26 +46,45 @@ list <string> unlikelyFloods = {"4477", "4480", "4730", "4809", "4754", "4488", 
                                 "4381", "4895", "4474", "4304", "4705", "4744", "4380", "4890", "4208", "4108", "4821", "4822",
                                 "4814", "4307", "4859", "4407", "4467"};
 
-
-int main() {
-    string postcodeEntry;
-    cout << "Please enter your desired postcode." << endl;
-    getline(cin, postcodeEntry);
-    cout << "Your postcode is: " << postcodeEntry << endl;
-    /*Add code for sentence regarding whether postcode is flood/cyclone-susceptible
-     * Then, add code connecting to flood/fire warning notif. paragraphs*/
-    if (find(cycloneSusceptAreas.begin(), cycloneSusceptAreas.end(), postcodeEntry) != cycloneSusceptAreas.end()){
-        cout << "This area is susceptible to cyclones.\n" + cycloneInfo + cycloneWarningHelp << endl;
-    } else {
-        cout << cycloneUnlikely << endl;
+extern "C" {
+    const char* generateMessage(const char* postCode) {
+        string strPostCode(postCode);
+        stringstream ss;
+        static string output;
+        if (find(cycloneSusceptAreas.begin(), cycloneSusceptAreas.end(), strPostCode) != cycloneSusceptAreas.end()){
+            ss << "This area is susceptible to cyclones.\n" + cycloneInfo + cycloneWarningHelp << endl;
+        } else {
+            ss << cycloneUnlikely << endl;
+        }
+        if (find(floodSusceptAreas.begin(), floodSusceptAreas.end(), strPostCode) != floodSusceptAreas.end()){
+            ss << "This area is susceptible to floods.\n" + floodInfo + floodWarnHelp << endl;
+        } else {
+            ss << floodUnlikelyMess << endl;
+        }
+        output = ss.str();
+        return output.c_str();
     }
-    if (find(floodSusceptAreas.begin(), floodSusceptAreas.end(), postcodeEntry) != floodSusceptAreas.end()){
-        cout << "This area is susceptible to floods.\n" + floodInfo + floodWarnHelp << endl;
-    } else {
-        cout << floodUnlikelyMess << endl;
-    }
-    return 0;
 }
+
+// int main() {
+//     string postcodeEntry;
+//     cout << "Please enter your desired postcode." << endl;
+//     getline(cin, postcodeEntry);
+//     cout << "Your postcode is: " << postcodeEntry << endl;
+//     /*Add code for sentence regarding whether postcode is flood/cyclone-susceptible
+//      * Then, add code connecting to flood/fire warning notif. paragraphs*/
+//     if (find(cycloneSusceptAreas.begin(), cycloneSusceptAreas.end(), postcodeEntry) != cycloneSusceptAreas.end()){
+//         cout << "This area is susceptible to cyclones.\n" + cycloneInfo + cycloneWarningHelp << endl;
+//     } else {
+//         cout << cycloneUnlikely << endl;
+//     }
+//     if (find(floodSusceptAreas.begin(), floodSusceptAreas.end(), postcodeEntry) != floodSusceptAreas.end()){
+//         cout << "This area is susceptible to floods.\n" + floodInfo + floodWarnHelp << endl;
+//     } else {
+//         cout << floodUnlikelyMess << endl;
+//     }
+//     return 0;
+// }
 
 /*list of all postcodes used
  *4871, 4810, 4805, 4740, 4874, 4892, 4849, 4802, 4800, 4737, 4865, 4854, 4860, 4870, 4700, 4670, 4655, 4659, 4000, 4560, 9726, 4890, 4830, 4895, 4850,

@@ -16,8 +16,19 @@ function getStringFromMemory(ptr, wasmModule) {
 // This is a javascript wrapper for the Web Assembly export of the compiled C++ function
 async function generateMessage(postCode) {
     const wasmModule = await Module();
-    const pointer = wasmModule._generateMessage(postCode);
-    const result = getStringFromMemory(pointer, wasmModule);
+    
+    // Allocate memory in WebAssembly for the input string
+    const lengthBytes = wasmModule.lengthBytesUTF8(postCode) + 1;
+    const inputPointer = wasmModule._malloc(lengthBytes);
+    
+    // copy the postcode value to the allocated memory
+    wasmModule.stringToUTF8(postCode, inputPointer, lengthBytes);
+ 
+    // Call the C++ function with the pointer to the string
+    const resultPointer = wasmModule._generateMessage(inputPointer);
+    const result = getStringFromMemory(resultPointer, wasmModule);
+    wasmModule._free(inputPointer);
+   
     return result;    
 }
 

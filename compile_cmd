@@ -1,1 +1,1 @@
-emcc main.cpp -o output.js -s EXPORTED_FUNCTIONS='[_generateMessage]' -s MODULARIZE=1 -s EXPORT_ES6=1
+emcc main.cpp -o output.js -s EXPORTED_FUNCTIONS='["_generateMessage", "_malloc", "_free"]' -s MODULARIZE=1 -s EXPORT_ES6=1 -s EXPORTED_RUNTIME_METHODS='["lengthBytesUTF8", "stringToUTF8"]'

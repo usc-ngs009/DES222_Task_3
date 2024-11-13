@@ -1,0 +1,31 @@
+body {
+    background-color:#EFC995;
+}
+
+#postCodeInputPanel {
+    padding:10px;
+    border-style: solid;
+    border-width:3px;
+    position:fixed;
+    border-color:#291b09;;
+    top:18%;
+    left:20%;
+    margin-top: -50px;
+    margin-left: -100px;
+}
+
+#mainTitle {
+    border:3px;
+    padding:5px;
+    border-style:solid;
+    position:fixed;
+    top:15%;
+    left:50%;
+    margin-top: -100px;
+    margin-left: -200px;
+}
+
+/*    top:18%;
+    left:20%;
+    margin-top: -50px;
+    margin-left: -100px; */

@@ -12,6 +12,9 @@ body {
     padding: 5px;
     line-height:2;
     width:330px;
+    border-radius:5px;
+    margin-bottom:15px;
+    border-color:aqua;
 }
 
 #mainTitle {
@@ -21,6 +24,7 @@ body {
     font-family:Arial, Helvetica, sans-serif;
     font-size:40px;
     text-align:center;
+    margin-bottom:20px;
 }
 
 #output {

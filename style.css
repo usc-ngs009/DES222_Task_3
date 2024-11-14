@@ -14,17 +14,20 @@ body {
     width:330px;
     border-radius:5px;
     margin-bottom:15px;
-    border-color:aqua;
+    border-color:#62310E;
 }
 
 #mainTitle {
     border:3px;
-    padding:6px;
-    border-style:solid;
+    padding:2px;
     font-family:Arial, Helvetica, sans-serif;
     font-size:40px;
+    border-radius:5px;
     text-align:center;
     margin-bottom:20px;
+    border-color:#62310E;
+    text-decoration:underline;
+    text-decoration-color: #62310E;
 }
 
 #output {
@@ -33,3 +36,5 @@ body {
     font-size:20px;
     text-align:justify;
 }
+
+/* how to put space between "postCodeInputPanel" and "output" - prompt used to get gaps between texts */
